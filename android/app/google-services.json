@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "414543069387",
+    "project_id": "needai-7f3d1",
+    "storage_bucket": "needai-7f3d1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414543069387:android:946a380c6482030b0d9b4e",
+        "android_client_info": {
+          "package_name": "com.example.needai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414543069387-0meiqun7gkqiudu4hiq9713aaeltn55i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.needai",
+            "certificate_hash": "0460f12b2fe81a8d9d5203520fad99628242ef79"
+          }
+        },
+        {
+          "client_id": "414543069387-ncgp2e3057rpfjv4at2s9s3mrfpnn18l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDatA2g17JLiTJxvZd9ZUFImLkI0NIISlI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414543069387-ncgp2e3057rpfjv4at2s9s3mrfpnn18l.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "414543069387-i8kbjdgagdchrvr3r59n19vr7hpa01ka.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.needai"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
