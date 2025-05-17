@@ -6,10 +6,8 @@ import 'package:needai/presentation/screens/favourites/favourites.dart';
 import 'package:needai/presentation/screens/firstpage/firstpage.dart';
 import 'package:needai/presentation/screens/profilepage/profilepage.dart';
 import 'package:needai/providers/data_provider.dart';
-
 import 'package:needai/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -24,8 +22,7 @@ class MainApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AddToFavourites()),
-        ChangeNotifierProvider(create: (_) => DataProvider()
-        ),
+        ChangeNotifierProvider(create: (_) => DataProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

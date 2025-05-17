@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
+import 'package:needai/presentation/screens/books_/bookList/booksList.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -39,11 +40,15 @@ class _TypeOfBooksState extends State<TypeOfBooks> {
         .doc('typesOfBooks');
 
     final DocumentSnapshot snapshot = await documentReference.get();
-
     if (snapshot.exists) {
       setState(() {
         typesOfBooks = snapshot.get('types');
       });
+      for (var bookType in typesOfBooks) {
+        final String title = bookType['title'];
+        final String url = bookType['url'];
+        print("Title: $title, URL: $url");
+      }
     } else {
       print("No books found.");
     }
@@ -59,8 +64,18 @@ class _TypeOfBooksState extends State<TypeOfBooks> {
           margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Container(
             padding: const EdgeInsets.all(8),
-            decoration: const BoxDecoration(color: Colors.grey),
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 255, 255, 255),
+            ),
             child: ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => bookList(bookType: typesOfBooks[i]),
+                  ),
+                );
+              },
               contentPadding: const EdgeInsets.symmetric(horizontal: 10),
               leading: Container(
                 padding: const EdgeInsets.only(right: 12),
@@ -69,7 +84,10 @@ class _TypeOfBooksState extends State<TypeOfBooks> {
                     right: BorderSide(width: 1, color: Colors.grey),
                   ),
                 ),
-                child: const Icon(Icons.book, color: Colors.white),
+                child: const Icon(
+                  Icons.book,
+                  color: Color.fromARGB(255, 0, 0, 0),
+                ),
               ),
               title: Text(typesOfBooks[i]),
             ),
