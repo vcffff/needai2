@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:needai/presentation/screens/books_page/books.dart';
+import 'package:needai/presentation/screens/auth/auth.dart';
+import 'package:needai/presentation/screens/books_/books.dart';
 import 'package:needai/presentation/screens/courses/courses.dart';
 import 'package:needai/presentation/screens/favourites/favourites.dart';
 import 'package:needai/presentation/screens/firstpage/firstpage.dart';
@@ -9,9 +10,14 @@ import 'package:needai/providers/data_provider.dart';
 import 'package:needai/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:needai/firebase_options.dart';
 
-void main() {
-  runApp(MainApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -28,7 +34,7 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
 
         theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
-        home: MainPage(),
+        home: Authourization(),
       ),
     );
   }
@@ -70,6 +76,7 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: changepage,
         currentIndex: current,
+        selectedItemColor: Colors.blue,
         items: const [
           BottomNavigationBarItem(
             label: 'Home',

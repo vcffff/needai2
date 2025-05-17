@@ -10,7 +10,6 @@ import 'package:needai/providers/data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class LogOrSign extends StatefulWidget {
   final bool isSigned;
   const LogOrSign({super.key, required this.isSigned});
@@ -173,6 +172,7 @@ class _LogOrSignState extends State<LogOrSign> {
           ).showSnackBar(SnackBar(content: Text(message)));
         }
       } catch (e) {
+        print(e.toString());
         if (mounted) {
           Navigator.pop(context);
           ScaffoldMessenger.of(context).showSnackBar(

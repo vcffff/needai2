@@ -55,14 +55,7 @@ class _bookListState extends State<bookList> {
               minHeight: MediaQuery.of(context).size.width * 0.3,
             ),
             child: InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BookWebPage(url: books[index]['url']),
-                  ),
-                );
-              },
+              onTap: () {},
               child: Container(
                 child: Column(children: [Text(books[index]['title'])]),
               ),
