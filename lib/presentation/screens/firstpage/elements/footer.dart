@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Footer extends StatefulWidget {
-  const   Footer({super.key});
+  const Footer({super.key});
 
   @override
   State<Footer> createState() => _FooterState();
@@ -16,8 +16,8 @@ class _FooterState extends State<Footer> {
       decoration: BoxDecoration(
         color: Colors.purple[50],
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
         ),
       ),
       child: Stack(

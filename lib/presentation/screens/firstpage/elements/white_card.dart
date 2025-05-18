@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:needai/presentation/screens/favourites/favourites.dart';
 import 'package:needai/presentation/themes/colors.dart';
 
 class WhiteCard extends StatefulWidget {
@@ -13,7 +14,7 @@ class _WhiteCardState extends State<WhiteCard>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _animation;
-int currentpage=0;
+  int currentpage = 0;
 
   @override
   void initState() {
@@ -37,7 +38,7 @@ int currentpage=0;
 
   @override
   Widget build(BuildContext context) {
-    return 
+    return
     // White Card Section
     Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
@@ -96,7 +97,12 @@ int currentpage=0;
                   ],
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => FavoritesPage()),
+                    );
+                  },
                   child: Text(
                     'My courses',
                     style: GoogleFonts.poppins(
