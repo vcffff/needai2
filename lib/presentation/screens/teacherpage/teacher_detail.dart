@@ -259,7 +259,6 @@ class TeacherDetailPage extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: 16),
-                  // О себе
                   Text(
                     'О себе',
                     style: TextStyle(
