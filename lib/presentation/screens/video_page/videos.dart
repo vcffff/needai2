@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:needai/presentation/themes/colors.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -13,7 +14,7 @@ class _SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Videos'), centerTitle: true),
+      appBar: AppBar(centerTitle: true),
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection('videos').snapshots(),
         builder: (context, snapshot) {
@@ -23,56 +24,55 @@ class _SecondPageState extends State<SecondPage> {
 
           final docs = snapshot.data!.docs;
 
-          return Column(
-            children: [
-              Expanded(
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 20,
-                    childAspectRatio: 1.3,
+          return ListView.separated(
+            shrinkWrap: true,
+            physics: BouncingScrollPhysics(),
+            separatorBuilder:
+                (BuildContext context, index) => SizedBox(
+                  height: 50,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.arrow_downward, color: lighttext, size: 25),
+                    ],
                   ),
-                  scrollDirection: Axis.vertical,
-                  itemCount: docs.length,
-                  itemBuilder: (context, index) {
-                    final data = docs[index].data();
-                    final url = data['video'] ?? '';
-                    final videoId =
-                        YoutubePlayerController.convertUrlToId(url) ?? '';
-
-                    if (videoId.isEmpty)
-                      return const Text("Некорректная ссылка");
-
-                    final controller = YoutubePlayerController.fromVideoId(
-                      videoId: videoId,
-                      params: const YoutubePlayerParams(
-                        showControls: true,
-                        showFullscreenButton: true,
-                      ),
-                    );
-
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        height: 50,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        padding: const EdgeInsets.all(8.0),
-                        child: SizedBox(
-                          child: YoutubePlayer(controller: controller),
-                        ),
-                      ),
-                    );
-                  },
                 ),
-              ),
-            ],
+            itemCount: docs.length,
+            padding: const EdgeInsets.all(16),
+            itemBuilder: (context, index) {
+              final data = docs[index].data();
+              final url = data['video'] ?? '';
+              final videoId = YoutubePlayerController.convertUrlToId(url) ?? '';
+
+              if (videoId.isEmpty) {
+                return const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text("That link is not working"),
+                );
+              }
+
+              final controller = YoutubePlayerController.fromVideoId(
+                videoId: videoId,
+                params: const YoutubePlayerParams(
+                  showControls: true,
+                  showFullscreenButton: true,
+
+                  mute: false,
+                ),
+              );
+
+              return Container(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    height: 300,
+                    width: 500,
+                    color: Colors.black,
+                    child: YoutubePlayer(controller: controller),
+                  ),
+                ),
+              );
+            },
           );
         },
       ),

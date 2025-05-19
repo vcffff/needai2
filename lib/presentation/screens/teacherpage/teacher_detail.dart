@@ -262,6 +262,7 @@ class TeacherDetailPage extends StatelessWidget {
                   Text(
                     'О себе',
                     style: TextStyle(
+                      
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: Colors.black87,
