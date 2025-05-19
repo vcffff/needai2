@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:needai/data/services/services.dart';
-import 'package:needai/presentation/screens/courses/oneCourse.dart';
+import 'package:needai/presentation/screens/courses/widget/oneCourse.dart';
 import 'package:needai/presentation/screens/courses/popUpFilter.dart';
-import 'package:needai/presentation/screens/courses/searchFill.dart';
+import 'package:needai/presentation/screens/courses/elements/searchFill.dart';
 
 class Course extends StatefulWidget {
   const Course({super.key});

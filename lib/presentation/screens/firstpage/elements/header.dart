@@ -19,7 +19,7 @@ class Header extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Hello from ',
+                  'Hello  new Student!',
                   style: GoogleFonts.poppins(
                     color: lighttext,
                     fontSize: 22,

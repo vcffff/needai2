@@ -130,7 +130,6 @@ class hoursChoose extends StatefulWidget {
 }
 
 class _hoursChooseState extends State<hoursChoose> {
-  @override
   final List<String> hours = [
     '3-8 hours',
     '8-12 hours',

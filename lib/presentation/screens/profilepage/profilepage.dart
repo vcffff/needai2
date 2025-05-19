@@ -13,7 +13,6 @@ class Profilepage extends StatefulWidget {
 class _ProfilepageState extends State<Profilepage> {
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     final users = Provider.of<DataProvider>(context).userEmail;
     List<String> words = [
       "Favourite",
@@ -86,9 +85,5 @@ class _ProfilepageState extends State<Profilepage> {
       ),
      
     );
-=======
-    final users = Provider.of<DataProvider>(context).users;
-    return Scaffold(body: Center(child: Text('Hello, ${users[0]}')));
->>>>>>> e38632128fb7aef651f6883f5bfb207761ef8b43
   }
 }

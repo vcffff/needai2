@@ -151,13 +151,8 @@ class _LogOrSignState extends State<LogOrSign> {
     setState(() => _isLoading = true);
 
     try {
-      final email = _emailController.text.trim();
-      final password = _passwordController.text.trim();
-
-      final userCredential = await Firebaseservices().authbyemail(
-        email: email,
-        password: password,
-      );
+    
+     
 
       final user = FirebaseAuth.instance.currentUser;
 

@@ -67,6 +67,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(Icons.favorite, color: maincolor),
         title: Text(
           'Favorites',
           style: TextStyle(
@@ -210,12 +211,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     },
                   ),
                 ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print(favoritesfromfirebase);
-        },
-        child: Text('error'),
       ),
     );
   }

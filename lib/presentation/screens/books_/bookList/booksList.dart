@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:needai/presentation/screens/books_/bookList/bookWebPage.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class bookList extends StatefulWidget {
@@ -36,11 +34,7 @@ class _bookListState extends State<bookList> {
             books
                 .where((book) => book['type'] == widget.bookType.toString())
                 .toList();
-        for (var book in filteredBooks) {
-          final String title = book['title'];
-          final String url = book['url'];
-          final String type = book['type'];
-        }
+       
         print(filteredBooks);
       } else {
         print("No books found.");

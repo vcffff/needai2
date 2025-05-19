@@ -48,7 +48,6 @@ class _ButtonGroupState extends State<ButtonGroup> {
             );
           }),
         ),
-        ListView.builder(itemBuilder: (context, index) {}),
       ],
     );
   }

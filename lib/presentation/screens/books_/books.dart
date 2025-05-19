@@ -38,6 +38,7 @@ class TypeOfBooks extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: Icon(Icons.reddit_sharp),
         title: Text('Available Books', style: TextStyle(fontSize: 20)),
       ),
       body: FutureBuilder<List<String>>(

@@ -2,16 +2,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-<<<<<<< HEAD
 import 'package:needai/firebase_options.dart';
 import 'package:needai/presentation/screens/auth/auth.dart';
-import 'package:needai/presentation/screens/books_page/books.dart';
+import 'package:needai/presentation/screens/books_/books.dart';
 import 'package:needai/presentation/screens/chatbot/bussines_logic/bloc/chat_bloc.dart';
 import 'package:needai/presentation/screens/chatbot/presentation/chat.dart';
-=======
-import 'package:needai/presentation/screens/auth/auth.dart';
-import 'package:needai/presentation/screens/books_/books.dart';
->>>>>>> e38632128fb7aef651f6883f5bfb207761ef8b43
 import 'package:needai/presentation/screens/courses/courses.dart';
 import 'package:needai/presentation/screens/favourites/favourites.dart';
 import 'package:needai/presentation/screens/firstpage/firstpage.dart';
@@ -20,20 +15,12 @@ import 'package:needai/providers/data_provider.dart';
 import 'package:needai/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:needai/firebase_options.dart';
+
 
 void main() async {
-<<<<<<< HEAD
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MainApp());
-=======
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MainApp());
->>>>>>> e38632128fb7aef651f6883f5bfb207761ef8b43
 }
 
 class MainApp extends StatelessWidget {
@@ -41,7 +28,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return BlocProvider(
       create: (context) => ChatBloc(),
       child: MultiProvider(
@@ -55,18 +41,6 @@ class MainApp extends StatelessWidget {
           theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
           home: Authourization(),
         ),
-=======
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AddToFavourites()),
-        ChangeNotifierProvider(create: (_) => DataProvider()),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-
-        theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
-        home: Authourization(),
->>>>>>> e38632128fb7aef651f6883f5bfb207761ef8b43
       ),
     );
   }

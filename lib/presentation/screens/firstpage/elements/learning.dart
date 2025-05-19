@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:needai/presentation/themes/colors.dart';
 
 class Learningd extends StatefulWidget {
   const Learningd({super.key});
