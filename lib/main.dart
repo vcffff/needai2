@@ -3,17 +3,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:needai/firebase_options.dart';
-import 'package:needai/presentation/screens/auth/auth.dart';
-import 'package:needai/presentation/screens/books_/books.dart';
-import 'package:needai/presentation/screens/chatbot/bussines_logic/bloc/chat_bloc.dart';
-import 'package:needai/presentation/screens/chatbot/presentation/chat.dart';
-import 'package:needai/presentation/screens/courses/courses.dart';
-import 'package:needai/presentation/screens/favourites/favourites.dart';
-import 'package:needai/presentation/screens/firstpage/firstpage.dart';
-import 'package:needai/presentation/screens/profilepage/profilepage.dart';
-import 'package:needai/presentation/screens/teacherpage/teacher.dart';
-import 'package:needai/providers/data_provider.dart';
-import 'package:needai/providers/user_provider.dart';
+import 'package:needai/src/features/books/presentation/bookList/books.dart';
+import 'package:needai/src/features/favourites/presentation/favourites.dart';
+import 'package:needai/src/features/main/presentation/firstpage.dart';
+import 'package:needai/src/features/profile/presentation/profilepage.dart';
+import 'package:needai/src/features/teachers/presentation/teacher.dart';
+import 'package:needai/src/features/courses/presentation/courses.dart';
+import 'package:needai/src/features/chatbot/bussines_logic/bloc/chat_bloc.dart';
+import 'package:needai/src/features/chatbot/presentation/chat.dart';
+
+import 'package:needai/src/providers/data_provider.dart';
+import 'package:needai/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
