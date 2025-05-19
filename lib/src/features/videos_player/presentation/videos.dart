@@ -16,7 +16,7 @@ class _SecondPageState extends State<SecondPage> {
     return Scaffold(
       appBar: AppBar(centerTitle: true),
       body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('videos').snapshots(),
+        stream: FirebaseFirestore.instance.collection('videos2').snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return const Center(child: CircularProgressIndicator());
