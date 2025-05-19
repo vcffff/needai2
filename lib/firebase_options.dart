@@ -63,8 +63,15 @@ class DefaultFirebaseOptions {
     messagingSenderId: '414543069387',
     projectId: 'needai-7f3d1',
     storageBucket: 'needai-7f3d1.firebasestorage.app',
+<<<<<<< HEAD
     androidClientId: '414543069387-0meiqun7gkqiudu4hiq9713aaeltn55i.apps.googleusercontent.com',
     iosClientId: '414543069387-i8kbjdgagdchrvr3r59n19vr7hpa01ka.apps.googleusercontent.com',
+=======
+    androidClientId:
+        '414543069387-0meiqun7gkqiudu4hiq9713aaeltn55i.apps.googleusercontent.com',
+    iosClientId:
+        '414543069387-i8kbjdgagdchrvr3r59n19vr7hpa01ka.apps.googleusercontent.com',
+>>>>>>> e38632128fb7aef651f6883f5bfb207761ef8b43
     iosBundleId: 'com.example.needai',
   );
 

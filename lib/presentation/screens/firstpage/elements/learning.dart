@@ -16,10 +16,9 @@ class _LearningdState extends State<Learningd> {
         Expanded(
           child: Container(
             padding: EdgeInsets.all(10),
-            height: 140,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
             ),
             child: Padding(
               padding: EdgeInsets.all(10),
@@ -35,87 +34,91 @@ class _LearningdState extends State<Learningd> {
                   ],
                   color: Colors.white,
 
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
                   children: [
-                    Container(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 30,
+                      ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
                             children: [
-                              CircularProgressIndicator(
-                                value: 0.8,
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                  maincolor,
+                              SizedBox(
+                                width: 28,
+                                height: 28,
+                                child: CircularProgressIndicator(
+                                  value: 0.8,
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.grey,
+                                  ),
+                                  strokeWidth: 6.0,
+                                  backgroundColor: Colors.grey.withOpacity(0.2),
                                 ),
-                                strokeWidth: 6.0,
-                                backgroundColor: Colors.grey[200],
                               ),
-                              SizedBox(width: 100),
-                              Text("Physics"),
+                              SizedBox(width: 10),
+                              Text(
+                                "Physics",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF1B1B1D),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                             ],
                           ),
-                          RichText(
-                            text: TextSpan(
-                              text: "40",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: "/48",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ],
+                          Text(
+                            "40/48",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey.withOpacity(0.6),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
-                    Container(
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 30,
+                      ),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
                             children: [
-                              Container(
-                                padding: EdgeInsets.only(right: 86),
+                              SizedBox(
+                                width: 28,
+                                height: 28,
                                 child: CircularProgressIndicator(
-                                  value: 0.3,
+                                  value: 0.25,
                                   valueColor: AlwaysStoppedAnimation<Color>(
-                                    maincolor,
+                                    Colors.grey,
                                   ),
                                   strokeWidth: 6.0,
-                                  backgroundColor: Colors.grey[200],
+                                  backgroundColor: Colors.grey.withOpacity(0.2),
                                 ),
                               ),
-
-                              Container(child: Text("Mathematics  ")),
+                              SizedBox(width: 10),
+                              Text(
+                                "Mathematics",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF1B1B1D),
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
                             ],
                           ),
-                          RichText(
-                            text: TextSpan(
-                              text: "6",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                              children: [
-                                TextSpan(
-                                  text: "/24",
-                                  style: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ],
+                          Text(
+                            "6/24",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.grey.withOpacity(0.6),
                             ),
                           ),
                         ],

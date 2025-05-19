@@ -44,6 +44,7 @@ class _FirstpageState extends State<Firstpage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -54,10 +55,11 @@ class _FirstpageState extends State<Firstpage>
               WhiteCard(),
               //list of lessons
               Listdart(),
-              //progress
-              Learningd(),
               //just learning page
               Justrow(),
+              //progress
+              Learningd(),
+
               //meetup(footerpage)
               Footer(),
             ],

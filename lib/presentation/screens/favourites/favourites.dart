@@ -30,7 +30,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
     final prefs = await SharedPreferences.getInstance();
     final snapshot =
         await FirebaseFirestore.instance.collection('favorites').get();
-
     setState(() {
       favoritesfromfirebase = snapshot.docs.map((doc) => doc.data()).toList();
 
