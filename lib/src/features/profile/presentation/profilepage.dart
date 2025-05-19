@@ -67,9 +67,7 @@ class _ProfilepageState extends State<Profilepage> {
                           children: [
                             Text(words[i]),
                             IconButton(
-                              onPressed: () {
-
-                              },
+                              onPressed: () {},
                               icon: Icon(Icons.arrow_forward_ios_outlined),
                             ),
                           ],
@@ -83,7 +81,6 @@ class _ProfilepageState extends State<Profilepage> {
           ),
         ),
       ),
-     
     );
   }
 }
