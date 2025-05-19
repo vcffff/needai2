@@ -140,6 +140,9 @@ class _CoursePageState extends State<CoursePage> {
                               });
                               favProvider.addToFav(widget.onecourse);
                             }
+                            print("docref:$docRef");
+                            print("isfav:$isFav");
+                            print("favprovider:$favProvider");
                           },
                           child: Icon(
                             isFav

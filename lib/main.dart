@@ -1,18 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:needai/firebase_options.dart';
+import 'package:needai/presentation/screens/auth/auth.dart';
 import 'package:needai/presentation/screens/books_page/books.dart';
+import 'package:needai/presentation/screens/chatbot/bussines_logic/bloc/chat_bloc.dart';
+import 'package:needai/presentation/screens/chatbot/presentation/chat.dart';
 import 'package:needai/presentation/screens/courses/courses.dart';
 import 'package:needai/presentation/screens/favourites/favourites.dart';
 import 'package:needai/presentation/screens/firstpage/firstpage.dart';
 import 'package:needai/presentation/screens/profilepage/profilepage.dart';
 import 'package:needai/providers/data_provider.dart';
-
 import 'package:needai/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MainApp());
 }
 
@@ -21,17 +27,19 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => AddToFavourites()),
-        ChangeNotifierProvider(create: (_) => DataProvider()
-        ),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
+    return BlocProvider(
+      create: (context) => ChatBloc(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => AddToFavourites()),
+          ChangeNotifierProvider(create: (_) => DataProvider()),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
 
-        theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
-        home: MainPage(),
+          theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
+          home: Authourization(),
+        ),
       ),
     );
   }
@@ -65,6 +73,8 @@ class _MainPageState extends State<MainPage> {
     FavoritesPage(),
     //profilepage
     Profilepage(),
+    //chat bot
+    Uipage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -96,6 +106,10 @@ class _MainPageState extends State<MainPage> {
               CupertinoIcons.profile_circled,
               color: Colors.blueAccent,
             ),
+          ),
+          BottomNavigationBarItem(
+            label: 'ChatBot',
+            icon: Icon(Icons.smart_toy, color: Colors.blueAccent),
           ),
         ],
       ),

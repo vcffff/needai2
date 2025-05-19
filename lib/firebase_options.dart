@@ -63,6 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '414543069387',
     projectId: 'needai-7f3d1',
     storageBucket: 'needai-7f3d1.firebasestorage.app',
+    androidClientId: '414543069387-0meiqun7gkqiudu4hiq9713aaeltn55i.apps.googleusercontent.com',
+    iosClientId: '414543069387-i8kbjdgagdchrvr3r59n19vr7hpa01ka.apps.googleusercontent.com',
     iosBundleId: 'com.example.needai',
   );
 
@@ -72,6 +74,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '414543069387',
     projectId: 'needai-7f3d1',
     storageBucket: 'needai-7f3d1.firebasestorage.app',
+    androidClientId: '414543069387-0meiqun7gkqiudu4hiq9713aaeltn55i.apps.googleusercontent.com',
+    iosClientId: '414543069387-i8kbjdgagdchrvr3r59n19vr7hpa01ka.apps.googleusercontent.com',
     iosBundleId: 'com.example.needai',
   );
 
@@ -83,4 +87,5 @@ class DefaultFirebaseOptions {
     authDomain: 'needai-7f3d1.firebaseapp.com',
     storageBucket: 'needai-7f3d1.firebasestorage.app',
   );
+
 }

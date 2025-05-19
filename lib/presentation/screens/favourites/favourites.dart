@@ -26,7 +26,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
     _loadFavoritesFromFirestore();
   }
 
-
   Future<void> _loadFavoritesFromFirestore() async {
     final prefs = await SharedPreferences.getInstance();
     final snapshot =
@@ -69,7 +68,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.favorite),
         title: Text(
           'Favorites',
           style: TextStyle(
@@ -151,7 +149,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "${favoritesfromfirebase[index]['title']}",
+                                  "${favProvider.favourites[index].title}",
                                   style: TextStyle(
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
@@ -186,7 +184,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Navigator.push(
+                                        Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) => SecondPage(),
@@ -213,6 +211,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     },
                   ),
                 ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print(favoritesfromfirebase);
+        },
+        child: Text('error'),
       ),
     );
   }

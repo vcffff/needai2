@@ -1,6 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
-
 class Firebaseservices {
   FirebaseAuth auth = FirebaseAuth.instance;
   Future<bool> authbyemail({
