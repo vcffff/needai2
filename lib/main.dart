@@ -11,11 +11,11 @@ import 'package:needai/presentation/screens/courses/courses.dart';
 import 'package:needai/presentation/screens/favourites/favourites.dart';
 import 'package:needai/presentation/screens/firstpage/firstpage.dart';
 import 'package:needai/presentation/screens/profilepage/profilepage.dart';
+import 'package:needai/presentation/screens/teacherpage/teacher.dart';
 import 'package:needai/providers/data_provider.dart';
 import 'package:needai/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-
 
 void main() async {
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -76,6 +76,8 @@ class _MainPageState extends State<MainPage> {
     Profilepage(),
     //chat bot
     Uipage(),
+    //teacherpage
+    TeachersPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -112,6 +114,10 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             label: 'ChatBot',
             icon: Icon(Icons.smart_toy, color: Colors.blueAccent),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_pin, color: Colors.blueAccent),
+            label: "Teachers",
           ),
         ],
       ),
