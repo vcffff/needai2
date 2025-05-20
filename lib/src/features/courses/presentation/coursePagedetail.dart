@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:needai/src/data/services/services.dart';
-import 'package:needai/src/features/main/presentation/videos.dart';
-import 'package:needai/src/features/themes/colors.dart';
+  import 'package:needai/src/features/themes/colors.dart';
+import 'package:needai/src/features/videos_player/presentation/videos.dart';
 
 import 'package:needai/src/providers/user_provider.dart';
 import 'package:provider/provider.dart';

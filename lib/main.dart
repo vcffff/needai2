@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:needai/firebase_options.dart';
+import 'package:needai/src/features/auth/presentation/auth.dart';
 import 'package:needai/src/features/books/presentation/bookList/books.dart';
 import 'package:needai/src/features/favourites/presentation/favourites.dart';
 import 'package:needai/src/features/main/presentation/firstpage.dart';
@@ -39,7 +40,7 @@ class MainApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
 
           theme: ThemeData(textTheme: GoogleFonts.poppinsTextTheme()),
-          home: MainPage(),
+          home: Authourization(),
         ),
       ),
     );
