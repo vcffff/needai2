@@ -1,10 +1,7 @@
-import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:needai/core/constants.dart';
+
 import 'package:needai/features/chatbot/bussines_logic/bloc/chat_bloc.dart';
 import 'package:needai/features/chatbot/bussines_logic/bloc/chat_event.dart';
 import 'package:needai/features/chatbot/bussines_logic/bloc/chat_state.dart';
@@ -19,9 +16,7 @@ class Uipage extends StatefulWidget {
 
 class _UipageState extends State<Uipage> with SingleTickerProviderStateMixin {
   final TextEditingController controller = TextEditingController();
-  File? selectedimagepath;
-  final ImagePicker picker = ImagePicker();
-  String? selectedImagePath;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,11 +83,7 @@ class _UipageState extends State<Uipage> with SingleTickerProviderStateMixin {
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
-                              if (message.imagePath != null)
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: Image.asset(message.imagePath!),
-                                ),
+                             
                             ],
                           ),
                         ),
@@ -116,12 +107,10 @@ class _UipageState extends State<Uipage> with SingleTickerProviderStateMixin {
                     final text = controller.text.trim();
                     if (text.isNotEmpty) {
                       context.read<ChatBloc>().add(
-                        Userzhazdi(text, selectedImagePath),
+                        Userzhazdi(text, ),
                       );
                       controller.clear();
-                      setState(() {
-                        selectedImagePath = null;
-                      });
+                     
                     }
                   },
                   icon: Icon(Icons.send_rounded, color: maincolor),

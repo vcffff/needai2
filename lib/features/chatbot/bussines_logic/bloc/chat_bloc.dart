@@ -11,59 +11,41 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<Userzhazdi>(onuser);
   }
 
-  Future<void> onuser(event,  emit) async {
+  Future<void> onuser(event, emit) async {
     final updatedMessages = List<Modelofmessage>.from(state.messages)
-      ..add(Modelofmessage(
-        message: event.message,
-        isuser: true,
-        imagePath: event.imagepath, 
-      ));
+      ..add(Modelofmessage(message: event.message, isuser: true));
     emit(state.copy(messages: updatedMessages));
 
     await Future.delayed(Duration(seconds: 1));
 
     final reply = fakemessage(event.message);
 
-    updatedMessages.add(Modelofmessage(
-      message: "Привет! Я понял, вот что могу подсказать по твоему вопросу 👇",
-      isuser: false,
-    ));
+    updatedMessages.add(
+      Modelofmessage(
+        message:
+            "Привет! Я понял, вот что могу подсказать по твоему вопросу 👇",
+        isuser: false,
+      ),
+    );
 
-
-    updatedMessages.add(Modelofmessage(
-      message: reply.text,
-      isuser: false,
-      imagePath: reply.imagePath,
-    ));
+    updatedMessages.add(Modelofmessage(message: reply.text, isuser: false));
 
     emit(state.copy(messages: updatedMessages));
   }
 
-  _Reply fakemessage(String input) {
+  Reply fakemessage(String input) {
     final lowerInput = input.toLowerCase();
 
     if (lowerInput.contains("sat")) {
-      return _Reply(
+      return Reply(
         text: messages.firstWhere((m) => m.toLowerCase().contains("sat")),
-        imagePath: 'assets/images/sat_example.png',
       );
     } else if (lowerInput.contains("ielts")) {
-      return _Reply(
+      return Reply(
         text: messages.firstWhere((m) => m.toLowerCase().contains("ielts")),
-        imagePath: 'assets/images/ielts_tip.png',
       );
     } else {
-      return _Reply(
-        text: messages[current++ % messages.length],
-        imagePath: null,
-      );
+      return Reply(text: messages[current++ % messages.length]);
     }
   }
-}
-
-class _Reply {
-  final String text;
-  final String? imagePath;
-
-  _Reply({required this.text, this.imagePath});
 }
