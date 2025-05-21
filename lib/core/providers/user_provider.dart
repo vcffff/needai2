@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:needai/data/services/services.dart';
+import 'package:needai/domain/data/services/services.dart';
 
 class AddToFavourites extends ChangeNotifier {
   final List<oneCourse> _favourites = [];

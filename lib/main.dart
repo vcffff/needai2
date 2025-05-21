@@ -12,7 +12,6 @@ import 'package:needai/features/teachers/presentation/teacher.dart';
 import 'package:needai/features/courses/presentation/courses.dart';
 import 'package:needai/features/chatbot/bussines_logic/bloc/chat_bloc.dart';
 import 'package:needai/features/chatbot/presentation/chat.dart';
-
 import 'package:needai/core/providers/data_provider.dart';
 import 'package:needai/core/providers/user_provider.dart';
 import 'package:provider/provider.dart';

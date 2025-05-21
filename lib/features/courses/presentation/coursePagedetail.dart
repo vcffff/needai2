@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:needai/data/services/services.dart';
+import 'package:needai/domain/data/services/services.dart';
   import 'package:needai/core/themes/colors.dart';
 import 'package:needai/features/videos_player/presentation/videos.dart';
 

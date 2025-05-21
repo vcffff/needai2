@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:needai/data/services/services.dart';
+import 'package:needai/domain/data/services/services.dart';
 import 'package:needai/features/courses/presentation/elements/searchFill.dart';
 import 'package:needai/features/courses/presentation/popUpFilter.dart';
 import 'package:needai/features/courses/presentation/widget/oneCourse.dart';
