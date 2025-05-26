@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:needai/features/teachers/presentation/teacherchatpage.dart';
 
 class TeacherDetailPage extends StatelessWidget {
   final Map<String, dynamic> teacher;
@@ -15,7 +16,9 @@ class TeacherDetailPage extends StatelessWidget {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
-              title: Text('Задать вопрос ${teacher['name']}'),
+              title: Text(
+                'Задать вопрос ${teacher['name'] ?? 'преподавателю'}',
+              ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -46,12 +49,14 @@ class TeacherDetailPage extends StatelessWidget {
                       return;
                     }
                     print(
-                      'Вопрос к ${teacher['name']}: ${questionController.text}',
+                      'Вопрос к ${teacher['name'] ?? 'неизвестному'}: ${questionController.text}',
                     );
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Вопрос отправлен ${teacher['name']}'),
+                        content: Text(
+                          'Вопрос отправлен ${teacher['name'] ?? ''}',
+                        ),
                       ),
                     );
                   },
@@ -89,7 +94,7 @@ class TeacherDetailPage extends StatelessWidget {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
-              title: Text('Записаться к ${teacher['name']}'),
+              title: Text('Записаться к ${teacher['name'] ?? 'преподавателю'}'),
               content: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -177,12 +182,14 @@ class TeacherDetailPage extends StatelessWidget {
                     }
 
                     print(
-                      'Запись к ${teacher['name']}: Имя: ${nameController.text}, Email: ${emailController.text}, Время: ${timeController.text}',
+                      'Запись к ${teacher['name'] ?? 'неизвестному'}: Имя: ${nameController.text}, Email: ${emailController.text}, Время: ${timeController.text}',
                     );
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('Запись к ${teacher['name']} отправлена'),
+                        content: Text(
+                          'Запись к ${teacher['name'] ?? ''} отправлена',
+                        ),
                       ),
                     );
                   },
@@ -207,11 +214,14 @@ class TeacherDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final name = teacher['name'] ?? 'Неизвестный преподаватель';
+    final image = teacher['image'] ?? '';
+    final description = teacher['description'] ?? 'Описание отсутствует.';
+    final skills = teacher['skills'] ?? 'Нет данных о навыках.';
+    final experience = teacher['experience'] ?? 'Нет данных об опыте.';
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text(teacher['name']),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: AppBar(title: Text(name), backgroundColor: Colors.blue),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -223,7 +233,10 @@ class TeacherDetailPage extends StatelessWidget {
                   SizedBox(
                     height: 250,
                     width: double.infinity,
-                    child: Image.network(teacher['image'], fit: BoxFit.cover),
+                    child:
+                        image.isNotEmpty
+                            ? Image.network(image, fit: BoxFit.cover)
+                            : Container(color: Colors.grey[300]),
                   ),
                 ],
               ),
@@ -234,43 +247,19 @@ class TeacherDetailPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    teacher['name'],
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black87,
-                    ),
+                    name,
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Row(
-                        children: List.generate(5, (i) {
-                          return Icon(
-                            i < teacher['rating']
-                                ? Icons.star
-                                : Icons.star_border,
-                            color: Colors.amber,
-                            size: 20,
-                          );
-                        }),
-                      ),
-                      SizedBox(width: 8),
-                    ],
-                  ),
+
                   SizedBox(height: 16),
                   Text(
                     'О себе',
-                    style: TextStyle(
-                      
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   SizedBox(height: 8),
                   Text(
-                    teacher['description'],
+                    description,
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey[800],
@@ -280,31 +269,21 @@ class TeacherDetailPage extends StatelessWidget {
                   SizedBox(height: 16),
                   Text(
                     'Навыки',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
-                  ),
-                  Wrap(
-                    spacing: 8,
-                    children:
-                        (teacher['skills'] as List<String>)
-                            .map((skill) => Chip(label: Text(skill.toString())))
-                            .toList(),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   SizedBox(height: 8),
+                  Text(
+                    skills,
+                    style: TextStyle(fontSize: 14, color: Colors.grey[800]),
+                  ),
+
                   SizedBox(height: 16),
                   Text(
                     'Опыт',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                   ),
                   SizedBox(height: 8),
-                  Text(teacher['experience']),
+                  Text(experience),
                   SizedBox(height: 24),
                   Row(
                     children: [
@@ -327,7 +306,15 @@ class TeacherDetailPage extends StatelessWidget {
                       SizedBox(width: 16),
                       Expanded(
                         child: OutlinedButton(
-                          onPressed: () => question(context),
+                          onPressed:
+                              () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder:
+                                      (context) =>
+                                          Teacherchatpage(otherUserId: "1"),
+                                ),
+                              ),
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(color: Colors.blue),
                             padding: EdgeInsets.symmetric(vertical: 16),

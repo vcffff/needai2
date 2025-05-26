@@ -37,17 +37,20 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_chat_types: ^3.6.2
+  flutter_chat_ui: 1.6.15
+  flutter_firebase_chat_core: ^1.6.8
   flutter_inappwebview: ^6.1.5
   flutter_svg: ^2.1.0
   font_awesome_flutter: ^10.8.0
   google_fonts: ^6.2.1
   google_sign_in: ^6.3.0
   image_picker: ^1.1.2
-
   provider: ^6.1.5
   shared_preferences: ^2.5.3
-
+  timestamp_to_string: ^0.0.1
   url_launcher: ^6.3.1
+  uuid: ^4.5.1
   youtube_player_flutter: ^9.1.1
   youtube_player_iframe: ^5.2.1
 dev_dependencies:

@@ -55,7 +55,6 @@ class _LogOrSignState extends State<LogOrSign> {
 
       final googleAuth = await googleUser.authentication;
       final credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
