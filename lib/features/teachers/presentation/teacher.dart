@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:needai/features/teachers/presentation/teacher_detail.dart';
 import 'package:needai/core/themes/colors.dart';
 import 'package:needai/features/teachers/presentation/teacherchatpage.dart';
 
@@ -79,13 +78,8 @@ class _TeachersPageState extends State<TeachersPage> {
             const SizedBox(height: 16),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
-                stream:
-                    _selectedFilter == null
-                        ? _firestore.collection('users_teachers').snapshots()
-                        : _firestore
-                            .collection('teachers')
-                            .where('skills', arrayContains: _selectedFilter)
-                            .snapshots(),
+                stream: _firestore.collection('users_teachers').snapshots(),
+
                 builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return const Center(child: Text('Ошибка загрузки данных'));
@@ -115,13 +109,17 @@ class _TeachersPageState extends State<TeachersPage> {
                       final teacher =
                           teachers[index].data() as Map<String, dynamic>;
                       final TeacherId = teachers[index].id;
-                      return TeacherCard(
-                        teacherId: TeacherId,
-                        name: teacher['firstName'] ?? 'Без имени',
-                        description: teacher['desc'] ?? '',
-                        experience: teacher['exp'] ?? '0 лет',
+                      return Column(
+                        children: [
+                          TeacherCard(
+                            teacherId: TeacherId,
+                            name: teacher['firstName'] ?? 'Без имени',
+                            description: teacher['desc'] ?? '',
+                            experience: teacher['exp'] ?? '0 лет',
 
-                        skills: teacher['skills'] ?? 'Нет навыков',
+                            skills: teacher['skills'] ?? 'Нет навыков',
+                          ),
+                        ],
                       );
                     },
                   );
@@ -186,7 +184,9 @@ class _TeacherCardState extends State<TeacherCard> {
           .collection('messages')
           .add({
             'senderId': auth.currentUser!.uid,
+            'message': 'Привет, ${widget.name}!',
             'timestamp': FieldValue.serverTimestamp(),
+            'text' : 'Привет, ${widget.name}!',
           });
 
       Navigator.push(
@@ -215,7 +215,6 @@ class _TeacherCardState extends State<TeacherCard> {
         ).showSnackBar(SnackBar(content: Text('Выбрали ${widget.name}')));
       },
       child: AnimatedContainer(
-        height: 500,
         duration: const Duration(milliseconds: 200),
         decoration: BoxDecoration(
           color: Colors.white,

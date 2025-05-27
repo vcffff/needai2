@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:needai/features/books/presentation/bookList/booksList.dart';
 
 class Books extends StatelessWidget {
@@ -55,26 +56,64 @@ class TypeOfBooks extends StatelessWidget {
             return ListView.builder(
               itemCount: typesOfBooks.length,
               itemBuilder: (context, i) {
-                return Card(
-                  elevation: 2.0,
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  child: ListTile(
-                    onTap: () {
-                      print(typesOfBooks[i]);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder:
-                              (context) => bookList(bookType: typesOfBooks[i]),
+                return InkWell(
+                  onTap: () {
+                    print(typesOfBooks[i]);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => bookList(bookType: typesOfBooks[i]),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [Color(0xFF8E2DE2), Color(0xFF4A00E0)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.15),
+                          blurRadius: 10,
+                          offset: Offset(0, 6),
                         ),
-                      );
-                    },
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 10),
-                    leading: const Icon(Icons.book, color: Colors.black),
-                    title: Text(typesOfBooks[i]),
+                      ],
+                    ),
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 14,
+                      ),
+                      leading: CircleAvatar(
+                        radius: 24,
+                        backgroundColor: Colors.white.withOpacity(0.15),
+                        child: Icon(
+                          Icons.auto_stories_rounded,
+                          color: Colors.white,
+                          size: 26,
+                        ),
+                      ),
+                      title: Text(
+                        typesOfBooks[i],
+                        style: GoogleFonts.poppins(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: Colors.white70,
+                      ),
+                    ),
                   ),
                 );
               },
