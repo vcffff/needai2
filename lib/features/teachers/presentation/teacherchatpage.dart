@@ -3,15 +3,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Teacherchatpage extends StatefulWidget {
+class TeacherChatPage extends StatefulWidget {
   final String otherUserId;
-  const Teacherchatpage({super.key, required this.otherUserId});
+  final bool isTeacher;
+  const TeacherChatPage({
+    super.key,
+    required this.otherUserId,
+    this.isTeacher = false,
+  });
 
   @override
-  State<Teacherchatpage> createState() => _TeacherchatpageState();
+  State<TeacherChatPage> createState() => _TeacherChatPageState();
 }
 
-class _TeacherchatpageState extends State<Teacherchatpage> {
+class _TeacherChatPageState extends State<TeacherChatPage> {
   final TextEditingController _messageController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -56,7 +61,9 @@ class _TeacherchatpageState extends State<Teacherchatpage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Chat with ${widget.otherUserId}',
+          widget.isTeacher
+              ? 'Чат с учеником ${widget.otherUserId}'
+              : 'Чат с преподавателем ${widget.otherUserId}',
           style: GoogleFonts.poppins(fontWeight: FontWeight.w600),
         ),
         backgroundColor: Colors.blueAccent,
@@ -74,29 +81,38 @@ class _TeacherchatpageState extends State<Teacherchatpage> {
                       .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
-                  return const Center(child: Text('Error loading messages'));
+                  return const Center(child: Text('Ошибка загрузки сообщений'));
                 }
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 }
 
                 final messages = snapshot.data!.docs;
-                // Фильтруем сообщения, чтобы показывать только свои
+
                 final filteredMessages =
-                    messages
-                        .where(
-                          (message) =>
-                              message['senderId'] == _auth.currentUser!.uid,
-                        )
-                        .toList();
+                    widget.isTeacher
+                        ? messages
+                        : messages
+                            .where(
+                              (message) =>
+                                  message['senderId'] == _auth.currentUser!.uid,
+                            )
+                            .toList();
+
+                if (filteredMessages.isEmpty) {
+                  return const Center(child: Text('Нет сообщений'));
+                }
 
                 return ListView.builder(
                   reverse: true,
                   itemCount: filteredMessages.length,
                   itemBuilder: (context, index) {
                     final message = filteredMessages[index];
+                    final isMe = message['senderId'] == _auth.currentUser?.uid;
+
                     return Align(
-                      alignment: Alignment.centerRight,
+                      alignment:
+                          isMe ? Alignment.centerRight : Alignment.centerLeft,
                       child: Container(
                         margin: const EdgeInsets.symmetric(
                           vertical: 5,
@@ -104,12 +120,14 @@ class _TeacherchatpageState extends State<Teacherchatpage> {
                         ),
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: Colors.blueAccent,
+                          color: isMe ? Colors.blueAccent : Colors.grey[300],
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
                           message['text'],
-                          style: GoogleFonts.poppins(color: Colors.white),
+                          style: GoogleFonts.poppins(
+                            color: isMe ? Colors.white : Colors.black,
+                          ),
                         ),
                       ),
                     );
@@ -126,7 +144,7 @@ class _TeacherchatpageState extends State<Teacherchatpage> {
                   child: TextField(
                     controller: _messageController,
                     decoration: InputDecoration(
-                      hintText: 'Enter your message...',
+                      hintText: 'Введите сообщение...',
                       hintStyle: GoogleFonts.poppins(),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20),

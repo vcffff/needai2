@@ -312,7 +312,7 @@ class TeacherDetailPage extends StatelessWidget {
                                 MaterialPageRoute(
                                   builder:
                                       (context) =>
-                                          Teacherchatpage(otherUserId: "1"),
+                                          TeacherChatPage(otherUserId: "1"),
                                 ),
                               ),
                           style: OutlinedButton.styleFrom(

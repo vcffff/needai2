@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:needai/features/chat_forstudents/presentation/chatforstudents.dart';
-import 'package:needai/features/chat_forstudents/presentation/chatpage.dart';
+
+import 'package:needai/features/teachers/presentation/demoteacher.dart';
 import 'package:needai/firebase_options.dart';
 import 'package:needai/features/auth/presentation/auth.dart';
 import 'package:needai/features/books/presentation/bookList/books.dart';
@@ -81,8 +81,8 @@ class _MainPageState extends State<MainPage> {
     //teacherpage
     TeachersPage(),
 
-    //chat
-    ChatsPage(),
+    //demoteacher
+    TeacherInboxPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -124,9 +124,10 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(Icons.person_pin, color: Colors.blueAccent),
             label: "Teachers",
           ),
+        
           BottomNavigationBarItem(
             icon: Icon(Icons.chat_bubble),
-            label: "Teachers",
+            label: "Inbox",
           ),
         ],
       ),

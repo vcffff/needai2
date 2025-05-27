@@ -135,7 +135,7 @@ class _TeachersPageState extends State<TeachersPage> {
   }
 }
 
-class TeacherCard extends StatelessWidget {
+class TeacherCard extends StatefulWidget {
   final String teacherId;
   final String name;
   final String description;
@@ -151,6 +151,11 @@ class TeacherCard extends StatelessWidget {
     required this.description,
   });
 
+  @override
+  State<TeacherCard> createState() => _TeacherCardState();
+}
+
+class _TeacherCardState extends State<TeacherCard> {
   String getChatId(String userA, String userB) {
     final ids = [userA, userB]..sort();
     return '${ids[0]}_${ids[1]}';
@@ -167,37 +172,33 @@ class TeacherCard extends StatelessWidget {
       return;
     }
 
-    final chatId = getChatId(auth.currentUser!.uid, teacherId);
+    final chatId = getChatId(auth.currentUser!.uid, widget.teacherId);
 
     try {
-      // Создаем чат
       await firestore.collection('chats').doc(chatId).set({
-        'participants': [auth.currentUser!.uid, teacherId],
+        'participants': [auth.currentUser!.uid, widget.teacherId],
         'timestamp': FieldValue.serverTimestamp(),
       }, SetOptions(merge: true));
 
-      // Отправляем сообщение
       await firestore
           .collection('chats')
           .doc(chatId)
           .collection('messages')
           .add({
-            'text': 'Привет, я хочу записаться на консультацию!',
             'senderId': auth.currentUser!.uid,
             'timestamp': FieldValue.serverTimestamp(),
           });
 
-      // Переходим в чат
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Teacherchatpage(otherUserId: teacherId),
+          builder: (context) => TeacherChatPage(otherUserId: widget.teacherId),
         ),
       );
 
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Сообщение отправлено $name')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Сообщение отправлено ${widget.name}')),
+      );
     } catch (e) {
       ScaffoldMessenger.of(
         context,
@@ -211,7 +212,7 @@ class TeacherCard extends StatelessWidget {
       onTap: () {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('Выбрали $name')));
+        ).showSnackBar(SnackBar(content: Text('Выбрали ${widget.name}')));
       },
       child: AnimatedContainer(
         height: 500,
@@ -258,7 +259,7 @@ class TeacherCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    widget.name,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -267,14 +268,14 @@ class TeacherCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    description,
+                    widget.description,
                     style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    experience,
+                    widget.experience,
                     style: TextStyle(fontSize: 12, color: Colors.black),
                   ),
                   const SizedBox(height: 12),
@@ -296,9 +297,9 @@ class TeacherCard extends StatelessWidget {
                             vertical: 8,
                           ),
                         ),
-                        child: const Text(
-                          'Записаться',
-                          style: TextStyle(fontSize: 12, color: Colors.white),
+                        child: AnimatedSize(
+                          duration: const Duration(milliseconds: 200),
+                          child: const Text('Написать'),
                         ),
                       ),
                     ),
